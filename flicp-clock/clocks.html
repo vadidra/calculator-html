@@ -1,0 +1,94 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="flipclock.css">
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+		<script src="flipclock.js"></script>		
+	</head>
+	<body>
+		<table style="width:100%">
+            <tr>
+    			<td><h1>UTC</h1></td>
+				<td><div id="clock00" class="clock" style="margin:2em;"></div></td>
+				<td><h1>UTC</h1></td>
+				<td><h1>NY Time</h1></td>
+				<td><h1>LA Time</h1></td>
+			</tr>
+  			<tr>
+    			<td><h1>Los Angeles</h1><h3>- 7</h3></td>
+				<td><div id="clock01" class="clock" style="margin:2em;"></div></td>
+				<td><h1></h1></td>
+				<td><h1></h1></td>
+				<td><h1></h1></td>
+			</tr>
+			<tr>
+    			<td><h1>New York</h1><h3>- 4 ... 08.00 - 17.00</h3></td>
+				<td><div id="clock02" class="clock" style="margin:2em;"></div></td>
+				<td><h1>...</h1></td>
+				<td><h1>08.00 - 17.00</h1></td>
+				<td><h1>05.00 - 14.00</h1></td>
+			</tr>
+			<tr>
+    			<td><h1>London</h1><h3>+ 1 ... 08.00 - 17.00</h3></td>
+				<td><div id="clock03" class="clock" style="margin:2em;"></div></td>
+				<td><h1>...</h1></td>
+				<td><h1>03.00 - 12.00</h1></td>
+				<td><h1>00.00 - 09.00</h1></td>
+			</tr>
+			<tr>
+    			<td><h1>Tokyo</h1><h3>+ 9 ...</h3></td>
+				<td><div id="clock04" class="clock" style="margin:2em;"></div></td>
+				<td><h1>...</h1></td>
+				<td><h1>20.00 - 05.00</h1></td>
+				<td><h1>17.00 - 02.00</h1></td>
+			</tr>
+			<tr>
+    			<td><h1>Sydney</h1><h3>+ 10 ...</h3></td>
+				<td><div id="clock05" class="clock" style="margin:2em;"></div></td>
+				<td><h1>...</h1></td>
+				<td><h1>17.00 - 02.00</h1></td>
+				<td><h1>14.00 - 23.00</h1></td>
+			</tr>
+ 		</table> 
+		
+
+		<script type="text/javascript">
+			Date.prototype.getOffsetDate = function( offset ) {
+			  utc = this.getTime() + (this.getTimezoneOffset() * 60000);
+			  return new Date(utc + (3600000*offset));
+			}
+
+			var clock01;
+			var clock02;
+			
+			$(document).ready(function() {
+
+				// UTC
+				var date00 = new Date().getOffsetDate(-24); 
+				clock00 = $('#clock00').FlipClock(date00,{ clockFace: 'TwentyFourHourClock'});
+
+				clock01 = $('#clock01').FlipClock({clockFace: 'TwentyFourHourClock' });
+
+				// NY
+				var date02 = new Date().getOffsetDate(-4); 
+				clock02 = $('#clock02').FlipClock(date02,{ clockFace: 'TwentyFourHourClock' });
+
+				// London
+				var date03 = new Date().getOffsetDate(-23); 
+				clock03 = $('#clock03').FlipClock(date03,{ clockFace: 'TwentyFourHourClock' });
+
+				// Tokyo
+				var date04 = new Date().getOffsetDate(9); 
+				clock04 = $('#clock04').FlipClock(date04,{ clockFace: 'TwentyFourHourClock' });
+
+				// Sydney
+				var date05 = new Date().getOffsetDate(10); 
+				clock05 = $('#clock05').FlipClock(date05,{ clockFace: 'TwentyFourHourClock' });
+				
+				
+			});
+		</script>
+		
+	</body>
+</html>
